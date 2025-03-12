@@ -1,0 +1,46 @@
+#!/bin/bash
+
+OUTPUT_FILE="network_metrics.txt"
+HOSTNAME=$(hostname)
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+echo "$HOSTNAME $DATE" > $OUTPUT_FILE
+
+for INTERFACE in $(ls /sys/class/net/ | grep -v "lo"); do
+    route_count=$(grep -c "^[^ ]" /proc/net/route)
+    if [[ $route_count -gt 0 ]]; then
+        connectivity="Connected"
+    else
+        connectivity="Not Connected"
+    fi
+
+    interface_status=$(cat /sys/class/net/$INTERFACE/operstate)
+    if [[ $interface_status == "up" ]]; then
+        availability="Available"
+    else
+        availability="Not Available"
+    fi
+
+    rx_bytes_1=$(cat /sys/class/net/$INTERFACE/statistics/rx_bytes)
+    tx_bytes_1=$(cat /sys/class/net/$INTERFACE/statistics/tx_bytes)
+
+    sleep 1 
+
+    rx_bytes_2=$(cat /sys/class/net/$INTERFACE/statistics/rx_bytes)
+    tx_bytes_2=$(cat /sys/class/net/$INTERFACE/statistics/tx_bytes)
+
+    rx_rate=$((rx_bytes_2 - rx_bytes_1))
+    tx_rate=$((tx_bytes_2 - tx_bytes_1))
+
+    rx_rate_human=$(echo "scale=2; $rx_rate / 1024" | bc)
+    tx_rate_human=$(echo "scale=2; $tx_rate / 1024" | bc)
+
+    echo "Interface: $INTERFACE" >> $OUTPUT_FILE
+    echo "  Connectivity: $connectivity" >> $OUTPUT_FILE
+    echo "  Availability: $availability" >> $OUTPUT_FILE
+    echo "  Throughput (Rx): $rx_rate_human KB/s" >> $OUTPUT_FILE
+    echo "  Throughput (Tx): $tx_rate_human KB/s" >> $OUTPUT_FILE
+    echo "------------------------------------" >> $OUTPUT_FILE
+done
+
+cat $OUTPUT_FILE

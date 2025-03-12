@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+OUTPUT_FILE="cpu_monitor"
+
+HOSTNAME=$(hostname)
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+LOAD_AVG=$(cat /proc/loadavg | awk '{print $1, $2, $3}')
+#CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+TOP_PROCESSES=$(ps -eo pid,ppid,cmd,%cpu --sort=-%cpu | head -n 6 | awk 'NR>1 {print "{\"pid\": "$1", \"ppid\": "$2", \"cmd\": \""$3"\", \"cpu\": "$4"},"}')
+#CORE_USAGE=$(awk '{print "{\"core\": "$1", \"usage\": "100 - $5"},"}' /proc/stat | head -n $(nproc))
+CPU_FREQ=$(cat /proc/cpuinfo | grep "MHz" | awk '{print $NF}')
+#TEMP=$(cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | awk '{print $1/1000}')
+#CONTEXT_SWITCHES=$(vmstat -s | grep "context switches" | awk '{print $1}')
+#INTERRUPTS=$(vmstat -s | grep "interrupts" | awk '{print $1}')
+
+
+echo "{" > $OUTPUT_FILE
+echo "  \"hostname\": \"$HOSTNAME\"," >> $OUTPUT_FILE
+echo "  \"timestamp\": \"$DATE\"," >> $OUTPUT_FILE
+echo "  \"load_avg\": \"$LOAD_AVG\"," >> $OUTPUT_FILE
+#echo "  \"cpu_usage\": $CPU_USAGE," >> $OUTPUT_FILE
+echo "  \"cpu_frequency_mhz\": $CPU_FREQ," >> $OUTPUT_FILE
+#echo "  \"temperature_c\": ${TEMP:-null}," >> $OUTPUT_FILE
+#echo "  \"context_switches\": $CONTEXT_SWITCHES," >> $OUTPUT_FILE
+#echo "  \"interrupts\": $INTERRUPTS," >> $OUTPUT_FILE
+#echo "  \"core_usage\": [" >> $OUTPUT_FILE
+#echo "$CORE_USAGE" | sed '$ s/,$//' >> $OUTPUT_FILE
+#echo "  ]," >> $OUTPUT_FILE
+echo "  \"top_processes\": [" >> $OUTPUT_FILE
+echo "$TOP_PROCESSES" | sed '$ s/,$//' >> $OUTPUT_FILE
+echo "  ]" >> $OUTPUT_FILE
+echo "}" >> $OUTPUT_FILE
+
+cat $OUTPUT_FILE
