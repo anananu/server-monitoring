@@ -1,75 +1,61 @@
 {
+  "uuid": "8b69fec2a90b449195eeef1f5769e968",
   "hostname": "ubuntu",
-  "timestamp": "2025-03-28 15:15:54",
+  "timestamp": "2025-03-30 16:28:46",
   "top_processes": [
     {
-      "uuid": "8b69fec2a90b449195eeef1f5769e968",
-      "timestamp": "2025-03-28 15:15:54",
-      "hostname": "ubuntu",
       "user": "ana",
-      "pid": "10434",
-      "cpu": "3.5",
-      "mem": "0.8",
-      "stat": "SNsl",
-      "start": "15:15",
-      "time": "0:00",
-      "command": "/usr/libexec/tracker-extract"
-    }
-    ,
-    {
-      "uuid": "8b69fec2a90b449195eeef1f5769e968",
-      "timestamp": "2025-03-28 15:15:54",
-      "hostname": "ubuntu",
-      "user": "ana",
-      "pid": "10427",
-      "cpu": "2.3",
-      "mem": "0.6",
-      "stat": "Ssl",
-      "start": "15:15",
-      "time": "0:00",
-      "command": "/usr/libexec/tracker-store"
-    }
-    ,
-    {
-      "uuid": "8b69fec2a90b449195eeef1f5769e968",
-      "timestamp": "2025-03-28 15:15:54",
-      "hostname": "ubuntu",
-      "user": "ana",
-      "pid": "3096",
-      "cpu": "2.0",
-      "mem": "19.0",
-      "stat": "Sl",
-      "start": "10:22",
-      "time": "5:58",
-      "command": "/home/ana/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node"
-    }
-    ,
-    {
-      "uuid": "8b69fec2a90b449195eeef1f5769e968",
-      "timestamp": "2025-03-28 15:15:54",
-      "hostname": "ubuntu",
-      "user": "ana",
-      "pid": "9981",
-      "cpu": "1.5",
-      "mem": "1.1",
-      "stat": "Sl+",
-      "start": "15:14",
-      "time": "0:01",
+      "pid": "4301",
+      "cpu": "36.8",
+      "mem": "0.5",
+      "stat": "S+",
+      "start": "16:20",
+      "time": "3:01",
       "command": "/usr/bin/python3"
     }
     ,
     {
-      "uuid": "8b69fec2a90b449195eeef1f5769e968",
-      "timestamp": "2025-03-28 15:15:54",
-      "hostname": "ubuntu",
-      "user": "mysql",
-      "pid": "1048",
-      "cpu": "0.9",
-      "mem": "9.9",
+      "user": "ana",
+      "pid": "4169",
+      "cpu": "13.7",
+      "mem": "19.4",
+      "stat": "Sl",
+      "start": "16:20",
+      "time": "1:09",
+      "command": "/home/ana/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node"
+    }
+    ,
+    {
+      "user": "ana",
+      "pid": "3530",
+      "cpu": "3.9",
+      "mem": "8.8",
+      "stat": "Sl",
+      "start": "16:14",
+      "time": "0:34",
+      "command": "/usr/lib/firefox/firefox"
+    }
+    ,
+    {
+      "user": "ana",
+      "pid": "4059",
+      "cpu": "2.8",
+      "mem": "4.3",
+      "stat": "Sl",
+      "start": "16:20",
+      "time": "0:14",
+      "command": "/home/ana/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node"
+    }
+    ,
+    {
+      "user": "ana",
+      "pid": "1745",
+      "cpu": "1.9",
+      "mem": "6.1",
       "stat": "Ssl",
-      "start": "10:21",
-      "time": "2:40",
-      "command": "/usr/sbin/mysqld"
+      "start": "16:10",
+      "time": "0:21",
+      "command": "/usr/bin/gnome-shell"
     }
   ]
 }

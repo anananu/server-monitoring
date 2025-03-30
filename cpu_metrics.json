@@ -1,15 +1,15 @@
 {
   "uuid": "8b69fec2a90b449195eeef1f5769e968",
   "hostname": "ubuntu",
-  "timestamp": "2025-03-29 14:03:31",
+  "timestamp": "2025-03-30 16:28:35",
   "model_name": "13th Gen Intel(R) Core(TM) i9-13900H",
-  "load_avg1": "3.36",
-  "load_avg2": "4.06",
-  "load_avg3": "2.26",
+  "load_avg1": "0.52",
+  "load_avg2": "0.62",
+  "load_avg3": "0.53",
   "cpu_frequency": {
-"core1": 2995.197,
-"core2": 2995.197,
-"core3": 2995.197,
-"core4": 2995.197
+"core1": 2995.200,
+"core2": 2995.200,
+"core3": 2995.200,
+"core4": 2995.200
   } 
 }

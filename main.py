@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing_extensions import Annotated
 
-from models.model import Memory, System, Cpu, Core
+from models.model import Memory, System, Cpu, Core, Disk, Network, Interface, Procces
 import subprocess
 import json 
 
@@ -92,11 +92,77 @@ async def get_cpu(db: db_dependency):
     db.commit()
     db.refresh(db_core)
 
-
-    
-
     return {"status": "saved", "data": cpu_data}
 
+@app.post("/disk/", status_code=status.HTTP_201_CREATED)
+async def get_disk(db: db_dependency):
+    disk_data=run_script("./scripts/disk.sh")
+    db_disk = Disk(**disk_data)
+
+    db.add(db_disk)
+    db.commit()
+    db.refresh(db_disk)
+
+    return {"status": "saved", "data": disk_data}
+
+@app.post("/proc/", status_code=status.HTTP_201_CREATED)
+async def get_proc(db: db_dependency):
+    proc_data=run_script("./scripts/proc.sh")
+    for sg_procces in proc_data["top_processes"]:
+        db_proc=Procces(
+            uuid = proc_data["uuid"],
+            hostname = proc_data["hostname"],
+            timestamp = proc_data["timestamp"],
+            user = sg_procces["user"],
+            pid = sg_procces["pid"],
+            cpu = sg_procces["cpu"],
+            mem = sg_procces["mem"],
+            stat = sg_procces["stat"],
+            start = sg_procces["start"],
+            time = sg_procces["time"],
+            command = sg_procces["command"]
+        )
+        db.add(db_proc)
+
+    db.commit()
+    db.refresh(db_proc)
+
+    return {"status": "saved", "data": proc_data}
+
+@app.post("/network", status_code=status.HTTP_201_CREATED)
+async def get_network(db: db_dependency):
+    network_data = run_script("./scripts/network.sh")
+    db_network = Network(
+        uuid = network_data["uuid"],
+        hostname = network_data["hostname"],
+        timestamp = network_data["timestamp"]
+    )
+
+    db.add(db_network)
+    db.commit()
+    db.refresh(db_network)
+
+    network_interfaces = network_data["interfaces"]
+    for detail in network_interfaces:
+        db_interface = Interface(
+            reg_id = db_network.id,
+            interface = detail["interface"],
+            connectivity = detail["connectivity"],
+            availability = detail["availability"],
+            ipv4_address = detail["ipv4_address"],
+            ipv6_address = detail["ipv6_address"],
+            throughput_rx = detail["throughput_rx"],
+            throughput_tx = detail["throughput_tx"],
+        )
+        db.add(db_interface)
+    
+    db.commit()
+    db.refresh(db_interface)
+
+    return{"status": "saved", "data": network_data}
+
+
+    
 @app.get("/")
 def root():
     return{"Start"}

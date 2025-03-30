@@ -9,6 +9,7 @@ DATE=$(date +"%Y-%m-%d %H:%M:%S")
 TOP_PROCESSES=$(ps aux --sort=-%cpu | head -n 6)
 
 echo "{" > $OUTPUT_FILE
+echo "  \"uuid\": \"$UUID\"," >> $OUTPUT_FILE
 echo "  \"hostname\": \"$HOSTNAME\"," >> $OUTPUT_FILE
 echo "  \"timestamp\": \"$DATE\"," >> $OUTPUT_FILE
 echo "  \"top_processes\": [" >> $OUTPUT_FILE
@@ -35,9 +36,6 @@ echo "$TOP_PROCESSES" | while read -r line; do
   fi
   
   echo "    {" >> $OUTPUT_FILE
-  echo "      \"uuid\": \"$UUID\"," >> $OUTPUT_FILE
-  echo "      \"timestamp\": \"$DATE\"," >> $OUTPUT_FILE
-  echo "      \"hostname\": \"$HOSTNAME\"," >> $OUTPUT_FILE
   echo "      \"user\": \"$USER\"," >> $OUTPUT_FILE
   echo "      \"pid\": \"$PID\"," >> $OUTPUT_FILE
   echo "      \"cpu\": \"$CPU\"," >> $OUTPUT_FILE

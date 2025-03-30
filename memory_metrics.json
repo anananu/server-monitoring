@@ -1,14 +1,14 @@
 {
   "uuid": "8b69fec2a90b449195eeef1f5769e968",
   "hostname": "ubuntu",
-  "timestamp": "2025-03-29 08:04:27",
+  "timestamp": "2025-03-30 16:28:29",
   "memory_total_mb": 3875,
-  "memory_free_mb": 835,
-  "memory_available_mb": 1280,
+  "memory_free_mb": 133,
+  "memory_available_mb": 742,
   "swap_total_mb": 923,
-  "swap_free_mb": 833,
-  "page_faults": 4825002,
-  "page_reads": 1911519,
-  "page_writes": 912281,
-  "pages_per_second": 14291
+  "swap_free_mb": 921,
+  "page_faults": 2920876,
+  "page_reads": 1380043,
+  "page_writes": 333489,
+  "pages_per_second": 7
 }
