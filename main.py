@@ -129,7 +129,7 @@ async def get_proc(db: db_dependency):
 
     return {"status": "saved", "data": proc_data}
 
-@app.post("/network", status_code=status.HTTP_201_CREATED)
+@app.post("/network/", status_code=status.HTTP_201_CREATED)
 async def get_network(db: db_dependency):
     network_data = run_script("./scripts/network.sh")
     db_network = Network(
