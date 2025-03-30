@@ -1,0 +1,40 @@
+!/bin/bash
+
+OUTPUT_FILE="memory_metrics.json"
+
+UUID=$(cat /etc/machine-id)
+HOSTNAME=$(hostname)
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+
+mem_total=$(grep "MemTotal" /proc/meminfo | awk '{print $2}')
+mem_free=$(grep "MemFree" /proc/meminfo | awk '{print $2}')
+mem_available=$(grep "MemAvailable" /proc/meminfo | awk '{print $2}')
+
+
+swap_total=$(grep "SwapTotal" /proc/meminfo | awk '{print $2}')
+swap_free=$(grep "SwapFree" /proc/meminfo | awk '{print $2}')
+
+
+page_faults=$(grep "pgfault" /proc/vmstat | awk '{print $2}')
+page_reads=$(grep "pgpgin" /proc/vmstat | awk '{print $2}')
+page_writes=$(grep "pgpgout" /proc/vmstat | awk '{print $2}')
+pages_per_sec=$(grep "pswpin" /proc/vmstat | awk '{print $2}')
+
+
+echo "{" > $OUTPUT_FILE
+echo "  \"uuid\": \"$UUID\"," >> $OUTPUT_FILE
+echo "  \"hostname\": \"$HOSTNAME\"," >> $OUTPUT_FILE
+echo "  \"timestamp\": \"$DATE\"," >> $OUTPUT_FILE
+echo "  \"memory_total_mb\": $((mem_total/1024))," >> $OUTPUT_FILE
+echo "  \"memory_free_mb\": $((mem_free/1024))," >> $OUTPUT_FILE
+echo "  \"memory_available_mb\": $((mem_available/1024))," >> $OUTPUT_FILE
+echo "  \"swap_total_mb\": $((swap_total/1024))," >> $OUTPUT_FILE
+echo "  \"swap_free_mb\": $((swap_free/1024))," >> $OUTPUT_FILE
+echo "  \"page_faults\": $page_faults," >> $OUTPUT_FILE
+echo "  \"page_reads\": $page_reads," >> $OUTPUT_FILE
+echo "  \"page_writes\": $page_writes," >> $OUTPUT_FILE
+echo "  \"pages_per_second\": $pages_per_sec" >> $OUTPUT_FILE
+echo "}" >> $OUTPUT_FILE
+
+cat $OUTPUT_FILE
