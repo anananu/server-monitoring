@@ -68,11 +68,11 @@ class Disk(Base):
     uuid = Column(String(32), ForeignKey("systems.uuid", ondelete="CASCADE"), nullable=False)
     hostname = Column(String(253), nullable=False)
     timestamp = Column(String(25), nullable=False)
-    disk_total = Column(String(6), nullable = False)
-    disk_usage = Column(String(6), nullable = False)
-    disk_free = Column(String(6), nullable = False)
-    disk_reads = Column(String(32), nullable = False)
-    disk_writes = Column(String(32), nullable = False)
+    disk_total_GB = Column(SmallInteger, nullable = False)
+    disk_usage_GB = Column(SmallInteger, nullable = False)
+    disk_free_GB = Column(SmallInteger, nullable = False)
+    disk_reads_sectors = Column(Integer, nullable = False)
+    disk_writes_sectors = Column(Integer, nullable = False)
     disk_queue_length = Column(BigInteger, nullable = False)
     nr_disk_partitions = Column(SmallInteger, nullable = False)
 
@@ -117,8 +117,8 @@ class Interface(Base):
     availability = Column(String(32), nullable=False)
     ipv4_address = Column(String(15), nullable=False)
     ipv6_address = Column(String(32), nullable=False)
-    throughput_rx = Column(String(32), nullable=False)
-    throughput_tx = Column(String(32), nullable=False)
+    throughput_rx_KBs = Column(Float, nullable=False)
+    throughput_tx_KBs = Column(Float, nullable=False)
 
     network = relationship("Network", back_populates="interfaces")
 

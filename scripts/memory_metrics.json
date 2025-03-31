@@ -1,0 +1,14 @@
+{
+  "uuid": "8b69fec2a90b449195eeef1f5769e968",
+  "hostname": "ubuntu",
+  "timestamp": "2025-03-31 13:09:26",
+  "memory_total_mb": 3875,
+  "memory_free_mb": 502,
+  "memory_available_mb": 618,
+  "swap_total_mb": 923,
+  "swap_free_mb": 0,
+  "page_faults": 10787843,
+  "page_reads": 2858039,
+  "page_writes": 2594425,
+  "pages_per_second": 34573
+}

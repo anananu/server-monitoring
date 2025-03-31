@@ -1,0 +1,12 @@
+{
+  "uuid": "8b69fec2a90b449195eeef1f5769e968",
+  "hostname": "ubuntu",
+  "timestamp": "2025-03-31 12:54:09",
+  "disk_total_GB": "20",
+  "disk_usage_GB": "15",
+  "disk_free_GB": "3.7",
+  "disk_reads_sectors": "169528",
+  "disk_writes_sectors": "73036",
+  "disk_queue_length": "560064",
+  "nr_disk_partitions": "3"
+}

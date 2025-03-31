@@ -1,0 +1,16 @@
+{
+  "uuid": "8b69fec2a90b449195eeef1f5769e968",
+  "hostname": "ubuntu",
+  "timestamp": "2025-03-31 12:55:20",
+  "interfaces": [
+    {
+      "interface": "ens33",
+      "connectivity": "Connected",
+      "availability": "Available",
+      "ipv4_address": "192.168.153.128",
+      "ipv6_address": "fe80::4310:80f9:ed14:78fe",
+      "throughput_rx_KBs": ".86",
+      "throughput_tx_KBs": ".97"
+    }
+  ]
+}

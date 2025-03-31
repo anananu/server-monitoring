@@ -64,8 +64,8 @@ for INTERFACE in $(ls /sys/class/net/ | grep -v "lo"); do
         echo "      \"ipv6_address\": \"Not Available\"," >> $OUTPUT_FILE
     fi
 
-    echo "      \"throughput_rx\": \"$rx_rate_human KB/s\"," >> $OUTPUT_FILE
-    echo "      \"throughput_tx\": \"$tx_rate_human KB/s\"" >> $OUTPUT_FILE
+    echo "      \"throughput_rx_KBs\": \"$rx_rate_human\"," >> $OUTPUT_FILE
+    echo "      \"throughput_tx_KBs\": \"$tx_rate_human\"" >> $OUTPUT_FILE
 
     if [[ $(ls /sys/class/net/ | grep -v "lo" | wc -l) -gt 1 ]]; then
         echo "    }," >> $OUTPUT_FILE
