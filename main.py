@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing_extensions import Annotated, Dict
+from typing_extensions import Annotated, Dict, List
 
 from models.model import Memory, System, Cpu, Core, Disk, Network, Interface, Procces
 import subprocess
@@ -54,44 +54,48 @@ class CpuSchema(BaseModel):
     load_avg3: float
     cpu_frequency: Dict[str, float]
 
+class ProcessDetailSchema(BaseModel):
+    user: str
+    pid: int
+    cpu: float
+    mem: float
+    stat: str
+    start: str
+    time: str
+    command: str
+
 class ProcSchema(BaseModel):
     uuid: str
     hostname: str
     timestamp: str
-    user: str
-    pid: int
-    cpu: float
-    memory: float
-    stat: str 
-    start: str
-    time: str
-    command: str
+    top_processes: List[ProcessDetailSchema]
 
 class DiskSchema(BaseModel):
     uuid: str
     hostname: str
     timestamp: str
-    disk_total_GB: int
-    disk_usage_GB: int
-    disk_free_GB: int
+    disk_total_GB: float
+    disk_usage_GB: float
+    disk_free_GB: float
     disk_reads_sectors: int 
     disk_writes_sectors: int
     disk_queue_length: int
     nr_disk_partitions: int
 
+class InterfaceSchema(BaseModel):
+    interface: str
+    connectivity: str
+    availability: str
+    ipv4_address: str
+    ipv6_address: str
+    throughput_rx_KBs: float
+    throughput_tx_KBs: float
+
 class NetworkSchema(BaseModel):
     uuid: str
     hostname: str
     timestamp: str
-
-class InterfaceSchema(BaseModel):
-    interface: str
-    connectivity: str
-    availability: str 
-    ipv4_address: str
-    ipv6_address: str 
-    throughput_rx_KBs: float
-    throughput_tx_KBs: float
+    interfaces: List[InterfaceSchema]
 
 @app.post("/sysinfo/", status_code=status.HTTP_201_CREATED)
 async def get_sysinfo(sysinfo: SysSchema, db: db_dependency):
@@ -159,60 +163,55 @@ async def get_disk(disk: DiskSchema, db: db_dependency):
     return {"status": "saved", "data": disk.model_dump()}
 
 @app.post("/proc/", status_code=status.HTTP_201_CREATED)
-async def get_proc(db: db_dependency):
-    proc_data=run_script("./scripts/proc.sh")
-    for sg_procces in proc_data["top_processes"]:
-        db_proc=Procces(
-            uuid = proc_data["uuid"],
-            hostname = proc_data["hostname"],
-            timestamp = proc_data["timestamp"],
-            user = sg_procces["user"],
-            pid = sg_procces["pid"],
-            cpu = sg_procces["cpu"],
-            mem = sg_procces["mem"],
-            stat = sg_procces["stat"],
-            start = sg_procces["start"],
-            time = sg_procces["time"],
-            command = sg_procces["command"]
+async def get_proc(proc_data: ProcSchema, db: db_dependency):
+    for proc in proc_data.top_processes:
+        db_proc = Procces(
+            uuid = proc_data.uuid,
+            hostname = proc_data.hostname,
+            timestamp = proc_data.timestamp,
+            user = proc.user,
+            pid = proc.pid,
+            cpu = proc.cpu,
+            mem = proc.mem,
+            stat = proc.stat,
+            start = proc.start,
+            time = proc.time,
+            command = proc.command
         )
         db.add(db_proc)
-
+    
     db.commit()
     db.refresh(db_proc)
 
-    return {"status": "saved", "data": proc_data}
+    return {"status": "saved", "data": proc_data.model_dump()}
 
 @app.post("/network/", status_code=status.HTTP_201_CREATED)
-async def get_network(db: db_dependency):
-    network_data = run_script("./scripts/network.sh")
+async def get_network(network: NetworkSchema, db: db_dependency):
     db_network = Network(
-        uuid = network_data["uuid"],
-        hostname = network_data["hostname"],
-        timestamp = network_data["timestamp"]
+        uuid=network.uuid,
+        hostname=network.hostname,
+        timestamp=network.timestamp
     )
-
     db.add(db_network)
     db.commit()
     db.refresh(db_network)
-
-    network_interfaces = network_data["interfaces"]
-    for detail in network_interfaces:
+    
+    for detail in network.interfaces:
         db_interface = Interface(
-            reg_id = db_network.id,
-            interface = detail["interface"],
-            connectivity = detail["connectivity"],
-            availability = detail["availability"],
-            ipv4_address = detail["ipv4_address"],
-            ipv6_address = detail["ipv6_address"],
-            throughput_rx = detail["throughput_rx"],
-            throughput_tx = detail["throughput_tx"],
+            reg_id=db_network.id,
+            interface=detail.interface,
+            connectivity=detail.connectivity,
+            availability=detail.availability,
+            ipv4_address=detail.ipv4_address,
+            ipv6_address=detail.ipv6_address,
+            throughput_rx_KBs=detail.throughput_rx_KBs,
+            throughput_tx_KBs=detail.throughput_tx_KBs,
         )
         db.add(db_interface)
     
     db.commit()
     db.refresh(db_interface)
-
-    return{"status": "saved", "data": network_data}
+    return {"status": "saved", "data": network.model_dump()}
 
 
     

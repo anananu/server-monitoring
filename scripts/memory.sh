@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 OUTPUT_FILE="memory_metrics.json"
 

@@ -1,61 +1,61 @@
 {
   "uuid": "8b69fec2a90b449195eeef1f5769e968",
   "hostname": "ubuntu",
-  "timestamp": "2025-03-31 12:55:35",
+  "timestamp": "2025-04-01 23:43:15",
   "top_processes": [
     {
       "user": "ana",
-      "pid": "13588",
-      "cpu": "35.3",
+      "pid": "30066",
+      "cpu": "48.5",
       "mem": "0.5",
-      "stat": "R+",
-      "start": "12:13",
-      "time": "14:55",
+      "stat": "S+",
+      "start": "23:42",
+      "time": "0:23",
       "command": "/usr/bin/python3"
     }
     ,
     {
       "user": "ana",
-      "pid": "11428",
-      "cpu": "11.7",
-      "mem": "26.0",
+      "pid": "29714",
+      "cpu": "28.8",
+      "mem": "13.0",
       "stat": "Sl",
-      "start": "11:25",
-      "time": "10:33",
+      "start": "23:41",
+      "time": "0:36",
       "command": "/home/ana/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node"
     }
     ,
     {
       "user": "ana",
-      "pid": "11326",
-      "cpu": "1.1",
-      "mem": "3.0",
+      "pid": "29618",
+      "cpu": "8.2",
+      "mem": "4.2",
       "stat": "Sl",
-      "start": "11:25",
-      "time": "1:00",
+      "start": "23:41",
+      "time": "0:10",
       "command": "/home/ana/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node"
     }
     ,
     {
       "user": "ana",
-      "pid": "3530",
-      "cpu": "0.9",
-      "mem": "8.3",
-      "stat": "Sl",
-      "start": "08:37",
-      "time": "2:23",
-      "command": "/usr/lib/firefox/firefox"
+      "pid": "30068",
+      "cpu": "4.5",
+      "mem": "1.6",
+      "stat": "Sl+",
+      "start": "23:42",
+      "time": "0:02",
+      "command": "/usr/bin/python3"
     }
     ,
     {
-      "user": "mysql",
-      "pid": "1058",
-      "cpu": "0.8",
-      "mem": "4.5",
-      "stat": "Ssl",
-      "start": "08:32",
-      "time": "2:21",
-      "command": "/usr/sbin/mysqld"
+      "user": "ana",
+      "pid": "22380",
+      "cpu": "3.7",
+      "mem": "16.7",
+      "stat": "Sl",
+      "start": "22:59",
+      "time": "1:38",
+      "command": "/home/ana/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node"
     }
   ]
 }
