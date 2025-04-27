@@ -11,26 +11,13 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'monitoring-dashboard';
-  ngAfterViewInit() {
-    Highcharts.chart('container', {
-      title: {
-        text: 'CPU Usage'
-      },
-      yAxis: {
-        title: {
-          text: 'Usage (%)'
-        }
-      },
-      xAxis: {
-        categories: ['Core 1', 'Core 2', 'Core 3', 'Core 4']
-      },
-      series: [{
-        type: 'column',
-        name: 'Load',
-        data: [30, 40, 55, 70]
-      }]
-    });
+  toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    document.body.classList.toggle('light-theme');
+  }
+
+  ngAfterViewInit(): void {
+    // momentan gol
   }
 }
 

@@ -1,25 +1,28 @@
 <div class="layout">
+
   <!-- Sidebar -->
-  <nav class="sidebar">
-    <h2>My network</h2>
-    <ul>
-      <li><a routerLink="/dashboard">Dashboard</a></li>
-      <li><a routerLink="/cpu">CPU</a></li>
-      <li><a routerLink="/memory">Memory</a></li>
-      <li><a routerLink="/storage">Storage</a></li>
-      <li><a routerLink="/network">Network</a></li>
-      <li><a routerLink="/processes">Processes</a></li>
-      <li><a routerLink="/settings">Settings</a></li>
-    </ul>
+  <nav>
+    <div class="menu">
+      <a routerLink="/dashboard" routerLinkActive="active" class="menu-button">Dashboard</a>
+      <a routerLink="/cpu" routerLinkActive="active" class="menu-button">CPU</a>
+      <a routerLink="/memory" routerLinkActive="active" class="menu-button">Memory</a>
+      <a routerLink="/storage" routerLinkActive="active" class="menu-button">Storage</a>
+      <a routerLink="/network" routerLinkActive="active" class="menu-button">Network</a>
+      <a routerLink="/processes" routerLinkActive="active" class="menu-button">Processes</a>
+      <a routerLink="/settings" routerLinkActive="active" class="menu-button">Settings</a>
+    </div>
   </nav>
+  
 
   <!-- Main -->
   <div class="main">
+
     <!-- Topbar -->
     <header class="topbar">
       <div class="left">
         <!-- My network deja apare în sidebar -->
       </div>
+
       <div class="right">
         <select class="timeline-select">
           <option>Last 30 minutes</option>
@@ -36,10 +39,11 @@
       </div>
     </header>
 
-    <!-- Aici se încarcă paginile -->
+    <!-- Pagini -->
     <div class="content">
       <router-outlet></router-outlet>
     </div>
 
   </div>
+
 </div>

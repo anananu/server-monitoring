@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
-  selector: 'app-dashboard',
+  selector: 'processes-dashboard',
   template: `<h1>Processes</h1><p>Overview of server metrics.</p>`
 })
-export class DashboardComponent {}
+export class ProcessesComponent {}
