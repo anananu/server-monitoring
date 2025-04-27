@@ -1,49 +1,60 @@
-<div class="layout">
+<div class="page">
 
-  <!-- Sidebar -->
-  <nav>
-    <div class="menu">
-      <a routerLink="/dashboard" routerLinkActive="active" class="menu-button">Dashboard</a>
-      <a routerLink="/cpu" routerLinkActive="active" class="menu-button">CPU</a>
-      <a routerLink="/memory" routerLinkActive="active" class="menu-button">Memory</a>
-      <a routerLink="/storage" routerLinkActive="active" class="menu-button">Storage</a>
-      <a routerLink="/network" routerLinkActive="active" class="menu-button">Network</a>
-      <a routerLink="/processes" routerLinkActive="active" class="menu-button">Processes</a>
-      <a routerLink="/settings" routerLinkActive="active" class="menu-button">Settings</a>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="left">
+      <strong>My Network</strong>
     </div>
-  </nav>
-  
 
-  <!-- Main -->
-  <div class="main">
+    <div class="right">
+      <select class="timeline-select">
+        <option>Last 30 minutes</option>
+        <option>Last hour</option>
+        <option>Last 3 hours</option>
+        <option>Last day</option>
+        <option>Last 3 days</option>
+        <option>Last week</option>
+        <option>Last 2 weeks</option>
+        <option>Last month</option>
+      </select>
+      <button class="edit-button">Edit Dashboard</button>
+      <button (click)="toggleTheme()" class="theme-button">Toggle Theme</button>
+    </div>
+  </header>
 
-    <!-- Topbar -->
-    <header class="topbar">
-      <div class="left">
-        <!-- My network deja apare în sidebar -->
-      </div>
+  <!-- Layout sub topbar -->
+  <div class="layout">
 
-      <div class="right">
-        <select class="timeline-select">
-          <option>Last 30 minutes</option>
-          <option>Last hour</option>
-          <option>Last 3 hours</option>
-          <option>Last day</option>
-          <option>Last 3 days</option>
-          <option>Last week</option>
-          <option>Last 2 weeks</option>
-          <option>Last month</option>
-        </select>
-        <button class="edit-button">Edit Dashboard</button>
-        <button (click)="toggleTheme()" class="theme-button">Toggle Theme</button>
-      </div>
-    </header>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <button routerLink="/dashboard" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </button>
+      <button routerLink="/cpu" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-microchip"></i> CPU
+      </button>
+      <button routerLink="/memory" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-memory"></i> Memory
+      </button>
+      <button routerLink="/storage" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-hdd"></i> Storage
+      </button>
+      <button routerLink="/network" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-network-wired"></i> Network
+      </button>
+      <button routerLink="/processes" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-tasks"></i> Processes
+      </button>
+      <button routerLink="/settings" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-cogs"></i> Settings
+      </button>
+    </nav>
 
-    <!-- Pagini -->
-    <div class="content">
+    <!-- Content principal -->
+    <main class="content">
       <router-outlet></router-outlet>
-    </div>
+    </main>
 
-  </div>
+  </div> <!-- aici se închide layout -->
 
-</div>
+</div> <!-- aici se închide page -->

@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+
+    <!-- Top Row -->
+    <div class="top-row">
+      <select class="server-select">
+        <option selected>All Servers</option>
+        <option>server1</option>
+        <option>server2</option>
+        <option>server3</option>
+      </select>
+  
+      <div class="gauges">
+        <div class="gauge-card">
+          <highcharts-chart 
+            [Highcharts]="Highcharts" 
+            [options]="cpuGaugeOptions"
+            style="width: 100%; height: 200px; display: block;">
+          </highcharts-chart>
+        </div>
+  
+        <div class="gauge-card">
+          <highcharts-chart 
+            [Highcharts]="Highcharts" 
+            [options]="memoryGaugeOptions"
+            style="width: 100%; height: 200px; display: block;">
+          </highcharts-chart>
+        </div>
+  
+        <div class="gauge-card">
+          <highcharts-chart 
+            [Highcharts]="Highcharts" 
+            [options]="storageGaugeOptions"
+            style="width: 100%; height: 200px; display: block;">
+          </highcharts-chart>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Bottom Row -->
+    <div class="bottom-row">
+      <div class="chart-large">
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="loadAverageOptions"
+          style="width: 100%; height: 300px; display: block;">
+        </highcharts-chart>
+      </div>
+  
+      <div class="chart-large">
+        <highcharts-chart 
+          [Highcharts]="Highcharts" 
+          [options]="cpuFrequencyOptions"
+          style="width: 100%; height: 300px; display: block;">
+        </highcharts-chart>
+      </div>
+    </div>
+  
+  </div>
+  

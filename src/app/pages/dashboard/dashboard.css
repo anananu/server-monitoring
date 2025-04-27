@@ -1,0 +1,46 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .top-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .server-select {
+    padding: 8px;
+    border-radius: 6px;
+  }
+  
+  .gauges {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+  }
+  
+  .gauge-card {
+    background: var(--content-bg);
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .bottom-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .chart-large {
+    background: var(--content-bg);
+    padding: 10px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 45%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
