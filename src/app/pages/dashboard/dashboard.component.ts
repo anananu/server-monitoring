@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
+import { HighchartsChartModule } from 'highcharts-angular'; 
 import SolidGauge from 'highcharts/modules/solid-gauge';
 
 // Activăm modulele suplimentare Highcharts
@@ -11,7 +12,8 @@ SolidGauge(Highcharts);
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  imports: [HighchartsChartModule] 
 })
 export class DashboardComponent {
   Highcharts: typeof Highcharts = Highcharts;
