@@ -1,0 +1,60 @@
+<div class="page">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="left">
+      <strong>My Network</strong>
+    </div>
+
+    <div class="right">
+      <select class="timeline-select">
+        <option>Last 30 minutes</option>
+        <option>Last hour</option>
+        <option>Last 3 hours</option>
+        <option>Last day</option>
+        <option>Last 3 days</option>
+        <option>Last week</option>
+        <option>Last 2 weeks</option>
+        <option>Last month</option>
+      </select>
+      <button class="edit-button">Edit Dashboard</button>
+      <button (click)="toggleTheme()" class="theme-button">Toggle Theme</button>
+    </div>
+  </header>
+
+  <!-- Layout sub topbar -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <button routerLink="/dashboard" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </button>
+      <button routerLink="/cpu" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-microchip"></i> CPU
+      </button>
+      <button routerLink="/memory" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-memory"></i> Memory
+      </button>
+      <button routerLink="/storage" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-hdd"></i> Storage
+      </button>
+      <button routerLink="/network" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-network-wired"></i> Network
+      </button>
+      <button routerLink="/processes" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-tasks"></i> Processes
+      </button>
+      <button routerLink="/settings" routerLinkActive="active" class="layout-button">
+        <i class="fas fa-cogs"></i> Settings
+      </button>
+    </nav>
+
+    <!-- Content principal -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div> <!-- aici se închide layout -->
+
+</div> <!-- aici se închide page -->

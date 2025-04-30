@@ -1,0 +1,49 @@
+/* Sidebar meniuri */
+.layout-button {
+  background: none;
+  border: none;
+  padding: 20px;
+  text-align: left;
+  font-size: 1.2em;
+  color: inherit;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.layout-button:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Activ pe meniuri */
+.active {
+  background-color: var(--active-bg);
+  font-weight: bold;
+}
+
+/* Elemente în topbar */
+.topbar .left {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.topbar .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-button, .edit-button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.timeline-select {
+  padding: 6px 10px;
+  border-radius: 4px;
+}
